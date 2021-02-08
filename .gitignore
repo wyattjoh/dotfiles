@@ -1,0 +1,22 @@
+.DS_Store
+
+# Thumbnails
+Thumbs.db
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Vim
+*.un~
+
+# Node.js
+node_modules
+
+sandi_meter
+gin-bin
+
+# Private files and folders
+.env
+__sensitive__

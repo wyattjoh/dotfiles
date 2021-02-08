@@ -1,0 +1,30 @@
+# Git related aliases
+alias gst='git status'
+alias gl='git pull'
+alias gp='git push'
+alias gd='git diff'
+alias gc='git commit -v'
+
+function glb() {
+  branch=`git rev-parse --abbrev-ref HEAD`
+  git checkout $1
+  git pull
+  git checkout $branch
+}
+
+alias glm='glb main'
+alias gld='glb develop'
+
+function mongo-mount() {
+  DATA_DIRECTORY=$1
+  if [ ! -d "$DATA_DIRECTORY" ]; then
+    echo "\"$DATA_DIRECTORY\" is not a valid folder"
+    return 1
+  fi
+
+  docker run --name mongo-mount -v $DATA_DIRECTORY:/data/db -p 27018:27017 -d mongo
+
+  echo -e "mongo-mount\n\n\tData: $DATA_DIRECTORY\n\tConnection URI: mongodb://localhost:27018\n"
+}
+
+alias yaml2js="python3 -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)'"
